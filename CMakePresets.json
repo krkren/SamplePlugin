@@ -7,56 +7,52 @@
     },
     "configurePresets": [
         {
-            "name": "base",
-            "hidden": true,
+            "name": "x64",
+            "displayName": "64-bit",
+            "description": "64-bit Windows build (default)",
             "generator": "Visual Studio 17 2022",
-            "binaryDir": "${sourceDir}/build/${presetName}",
+            "architecture": "x64",
+            "binaryDir": "${sourceDir}/build",
             "cacheVariables": {
                 "CMAKE_CXX_STANDARD": "17",
                 "CMAKE_CXX_STANDARD_REQUIRED": "ON"
             }
         },
         {
-            "name": "x64",
-            "displayName": "64-bit",
-            "description": "64-bit Windows build",
-            "inherits": "base",
-            "architecture": "x64"
-        },
-        {
             "name": "x86",
             "displayName": "32-bit",
-            "description": "32-bit Windows build",
-            "inherits": "base",
-            "architecture": "Win32"
+            "description": "32-bit Windows build (for kirikir2)",
+            "generator": "Visual Studio 17 2022",
+            "architecture": "Win32",
+            "binaryDir": "${sourceDir}/build32",
+            "cacheVariables": {
+                "CMAKE_CXX_STANDARD": "17",
+                "CMAKE_CXX_STANDARD_REQUIRED": "ON"
+            }
         }
     ],
     "buildPresets": [
         {
             "name": "x64-release",
             "displayName": "64-bit Release",
-            "description": "64-bit Release build",
             "configurePreset": "x64",
             "configuration": "Release"
         },
         {
             "name": "x64-debug",
             "displayName": "64-bit Debug",
-            "description": "64-bit Debug build",
             "configurePreset": "x64",
             "configuration": "Debug"
         },
         {
             "name": "x86-release",
             "displayName": "32-bit Release",
-            "description": "32-bit Release build",
             "configurePreset": "x86",
             "configuration": "Release"
         },
         {
             "name": "x86-debug",
             "displayName": "32-bit Debug",
-            "description": "32-bit Debug build",
             "configurePreset": "x86",
             "configuration": "Debug"
         }
