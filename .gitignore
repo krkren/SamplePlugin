@@ -1,0 +1,10 @@
+# Build artifacts
+build/
+*.exe
+*.dll
+*.lib
+*.exp
+*.pdb
+*.tlog
+*.lastbuildstate
+*.recipe
