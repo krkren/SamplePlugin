@@ -1,5 +1,7 @@
 //---------------------------------------------------------------------------
+#if defined(_WIN32)
 #include <windows.h>
+#endif
 
 #include "tp_stub.h"
 	// tp_stub.h と tp_stub.cpp は必ずプロジェクトに追加する

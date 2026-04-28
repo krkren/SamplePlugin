@@ -4,12 +4,32 @@
 	#pragma inline
 #endif
 
+#if defined(_WIN32)
 #include <windows.h>
+#include <intrin.h>
+#endif
+
 #include "tp_stub.h"
 #include <math.h>
+#include <cstring> // for memmove
 #include "ripple.h"
 #include "common.h"
-#include <intrin.h>
+
+// SSE intrinsics support for non-MSVC compilers
+#if !defined(_MSC_VER) && !defined(__BORLANDC__)
+#include <xmmintrin.h>
+#include <emmintrin.h>
+#endif
+
+// Stub TVPGetCPUType() for non-Windows platforms
+// tp_stub.h guards this behind #ifdef __WINVER__, which is not defined when __GENERIC__ is set
+#if !defined(_WIN32)
+inline tjs_uint32 TVPGetCPUType()
+{
+	// On 64-bit systems, SSE2 is always available
+	return TVP_CPU_HAS_SSE2;
+}
+#endif
 
 //---------------------------------------------------------------------------
 /*
@@ -522,7 +542,7 @@ static void TVPRippleTransform_sse2_b(
 	}
 }
 
-#ifndef _M_X64
+#if !defined(_M_X64) && (defined(_MSC_VER) || defined(__BORLANDC__))
 //---------------------------------------------------------------------------
 static void TVPRippleTransform_mmx_f(
 	const tjs_uint16 *displacemap, const tjs_uint16 *driftmap, tjs_uint32 *dest,
@@ -972,7 +992,7 @@ static void TVPRippleTransform_emmx_b(
 	}
 }
 //---------------------------------------------------------------------------
-#endif
+#endif // !defined(_M_X64) && (defined(_MSC_VER) || defined(__BORLANDC__))
 
 
 //---------------------------------------------------------------------------
@@ -986,7 +1006,7 @@ static tTVPRippleTransformFunc TVPRippleTransform_b = TVPRippleTransform_c_b;
 static void TVPInitRippleTransformFuncs()
 {
 	tjs_uint32 cputype = TVPGetCPUType();
-#ifndef _M_X64
+#if !defined(_M_X64) && (defined(_MSC_VER) || defined(__BORLANDC__))
 	if(cputype & TVP_CPU_HAS_MMX)
 	{
 		// MMX が使用可能な場合

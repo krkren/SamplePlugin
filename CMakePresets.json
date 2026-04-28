@@ -29,6 +29,17 @@
                 "CMAKE_CXX_STANDARD": "17",
                 "CMAKE_CXX_STANDARD_REQUIRED": "ON"
             }
+        },
+        {
+            "name": "linux-x64",
+            "displayName": "Linux 64-bit",
+            "description": "64-bit Linux build",
+            "generator": "Unix Makefiles",
+            "binaryDir": "${sourceDir}/build-linux",
+            "cacheVariables": {
+                "CMAKE_CXX_STANDARD": "17",
+                "CMAKE_CXX_STANDARD_REQUIRED": "ON"
+            }
         }
     ],
     "buildPresets": [
@@ -54,6 +65,18 @@
             "name": "x86-debug",
             "displayName": "32-bit Debug",
             "configurePreset": "x86",
+            "configuration": "Debug"
+        },
+        {
+            "name": "linux-x64-release",
+            "displayName": "Linux 64-bit Release",
+            "configurePreset": "linux-x64",
+            "configuration": "Release"
+        },
+        {
+            "name": "linux-x64-debug",
+            "displayName": "Linux 64-bit Debug",
+            "configurePreset": "linux-x64",
             "configuration": "Debug"
         }
     ]

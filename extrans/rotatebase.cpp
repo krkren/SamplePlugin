@@ -1,7 +1,11 @@
 //---------------------------------------------------------------------------
+#if defined(_WIN32)
 #include <windows.h>
+#endif
+
 #include "tp_stub.h"
 #include <math.h>
+#include <cstring>
 #include "rotatebase.h"
 #include "common.h"
 
