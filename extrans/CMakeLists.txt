@@ -18,3 +18,10 @@ krkrz_plugin(extrans
         TVP_CPU_HAS_MMX=1
         TVP_CPU_HAS_EMMX=2
 )
+
+# Output DLL directly to build root (e.g., build/extrans.dll)
+set_target_properties(extrans PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}"
+    LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}"
+    ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}"
+)
