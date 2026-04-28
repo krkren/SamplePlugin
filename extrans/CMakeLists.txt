@@ -15,4 +15,6 @@ krkrz_plugin(extrans
         res.rc
     DEFINITIONS
         TVP_CPU_HAS_SSE2=0x00800000
+        TVP_CPU_HAS_MMX=1
+        TVP_CPU_HAS_EMMX=2
 )
