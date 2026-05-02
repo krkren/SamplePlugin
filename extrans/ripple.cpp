@@ -21,9 +21,9 @@
 #include <emmintrin.h>
 #endif
 
-// Stub TVPGetCPUType() for non-Windows platforms
+// Stub TVPGetCPUType() for non-Windows platforms and generic builds
 // tp_stub.h guards this behind #ifdef __WINVER__, which is not defined when __GENERIC__ is set
-#if !defined(_WIN32)
+#if !defined(_WIN32) || defined(__GENERIC__)
 inline tjs_uint32 TVPGetCPUType()
 {
 	// On 64-bit systems, SSE2 is always available
